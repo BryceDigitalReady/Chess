@@ -2,12 +2,11 @@ import java.awt.*;
 
 public class Board {
     private Piece[][] pieces = new Piece[8][8];
+
     public Board() {
         this.newBoard();
     }
-    public Piece getPiece(int row, int col) {
-        return this.pieces[row][col];
-    }
+
     private void newBoard() {
         // black pieces
         this.pieces[0][0] = new Rook("RookB1", Color.BLACK);
@@ -44,4 +43,19 @@ public class Board {
         this.pieces[6][6] = new Pawn("PawnW7", Color.WHITE);
         this.pieces[6][7] = new Pawn("PawnW8", Color.WHITE);
     }
+
+    public Piece getPiece(int row, int col) {
+        return this.pieces[row][col];
+    }
+
+    public boolean validMove(Board board, int startRow, int startCol, int endRow, int endCol) {
+        Piece otherPiece = board.getPiece(endRow, endCol);
+        if (otherPiece != null) {
+            if (otherPiece.color.equals()) {
+                return false;
+            }
+        }
+    }
+    
+
 }

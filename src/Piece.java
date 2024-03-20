@@ -7,5 +7,6 @@ public abstract class Piece {
         this.name = name;
         this.color = color;
     }
+
 }
 
