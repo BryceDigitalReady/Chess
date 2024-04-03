@@ -57,6 +57,8 @@ public class Board {
         }
     return true; //come back here
     }
+
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for(int row = 0; row < 8; row++) {
