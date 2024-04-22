@@ -20,4 +20,8 @@ public class Horse extends Piece {
             }
         }
         return possibleMoves;
-    }}
+    }
+    public String showTheHorse() {
+        return this.toString();
+    }
+}
