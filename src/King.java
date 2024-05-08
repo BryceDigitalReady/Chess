@@ -6,21 +6,24 @@ public class King extends Piece {
     public King(String name, Color color, char symbol) {
         super(name, color, symbol);
     }
+    public King(Color color) {
+        super("King", color, color == Color.WHITE ? '♕' : '♚');
+    }
 
-public static ArrayList<String> findKingMoves(int row, int col) {
-    ArrayList<String> possibleMoves = new ArrayList<>();
-    int[][] moves = {
-            {1, -1}, {1,0}, { 1,1}, {0, -1}, {0, 1}, {-1, -1}, {-1, 0}, {-1, 1}
-    };
-    for(int[] move : moves) {
-        int newRow = row + move[0];
-         int newCol = col + move[1];
-        if(newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
-            possibleMoves.add((char)('A' + newCol) + Integer.toString(8 - newRow));
-
+    @Override
+    public boolean validMove(Board board, int startRow, int startCol, int endRow, int endCol) {
+        Piece piece = board.getPiece(endRow, endCol);
+        if (endRow < 0 || endRow >= board.pieces.length || endCol < 0 || endCol >= board.pieces[0].length) {
+            return false;
         }
 
+        if (startCol == endCol && startRow == endRow) {
+            return false;
+        }
+        if (piece != null && board.getPiece(endRow, endCol).color == this.color) {
+            return false;
+        }
+        return Math.abs(endRow - startRow) <= 1 && Math.abs(endCol - startCol) <= 1;
     }
-    return possibleMoves;
-}
+
 }

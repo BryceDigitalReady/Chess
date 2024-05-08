@@ -9,6 +9,6 @@ public abstract class Piece {
         this.color = color;
         this.symbol = symbol;
     }
-
+    public abstract boolean validMove(Board board, int startRow, int startCol, int endRow, int endCol);
 }
 

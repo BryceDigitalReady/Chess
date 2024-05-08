@@ -1,10 +1,13 @@
-import java.awt.*;
-
 public class Board {
-    private Piece[][] pieces = new Piece[8][8];
+    Piece[][] pieces = new Piece[8][8];
 
     public Board() {
         this.newBoard();
+    }
+    public Board(boolean fill) {
+        if(fill) {
+            this.newBoard();
+        }
     }
 
     private void newBoard() {
@@ -43,21 +46,45 @@ public class Board {
         this.pieces[6][6] = new Pawn("PawnB7", Color.BLACK, '♟');
         this.pieces[6][7] = new Pawn("PawnB8", Color.BLACK, '♟');
     }
+    private void emptyNewBoard(){
+    }
 
     public Piece getPiece(int row, int col) {
         return this.pieces[row][col];
     }
+    public void setPiece(int row, int col, Piece piece) {
+        this.pieces[row][col] = piece;
+    }
+    public boolean clearHorizontalPath(int startRow, int startCol, int endCol) {
+        int side = startCol < endCol ? 1 : -1;
+        for (int i = startCol; i != endCol ; i += side) {
+            if(getPiece(startRow, endCol) != null) {
+                return false;
 
-    public boolean validMove(Board board, int startRow, int startCol, int endRow, int endCol) {
-        Piece otherPiece = board.getPiece(endRow, endCol);
-        if (otherPiece != null) {
-            if (otherPiece.color.equals(Color.WHITE)) {
+        }
+
+        }
+        return true;
+    }
+    public boolean clearVerticalPath(int startRow, int startCol, int endRow) {
+        int side = startRow < endRow ? 1 : -1;
+        for (int i = startRow; i != endRow ; i += side) {
+            if(getPiece(endRow, startCol) != null) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+    public boolean clearDiagonalPath(int startRow,int startCol, int endRow, int endCol) {
+        int down = (endRow - startRow) < 0 ?  -1 : 1;
+        int left = (endCol - startCol) < 0 ?  -1 : 1;
+        for(int i = startRow; i != endRow ; i += down) {
+            if(getPiece(endRow, startCol) != null) {
                 return false;
             }
         }
-    return true; //come back here
     }
-
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
