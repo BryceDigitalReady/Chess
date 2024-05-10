@@ -57,8 +57,8 @@ public class Board {
     }
     public boolean clearHorizontalPath(int startRow, int startCol, int endCol) {
         int side = startCol < endCol ? 1 : -1;
-        for (int i = startCol; i != endCol ; i += side) {
-            if(getPiece(startRow, endCol) != null) {
+        for (int i = startCol + side; i != endCol ; i += side) {
+            if(getPiece(startRow, i) != null) {
                 return false;
 
         }
@@ -68,22 +68,32 @@ public class Board {
     }
     public boolean clearVerticalPath(int startRow, int startCol, int endRow) {
         int side = startRow < endRow ? 1 : -1;
-        for (int i = startRow; i != endRow ; i += side) {
-            if(getPiece(endRow, startCol) != null) {
+        for (int i = startRow + side; i != endRow ; i += side) {
+            if(getPiece(i, startCol) != null) {
                 return false;
             }
 
         }
         return true;
     }
-    public boolean clearDiagonalPath(int startRow,int startCol, int endRow, int endCol) {
+     public boolean clearDiagonalPath(int startRow,int startCol, int endRow, int endCol) {
+        int currentRow = startRow;
+        int currentCol = startCol;
         int down = (endRow - startRow) < 0 ?  -1 : 1;
         int left = (endCol - startCol) < 0 ?  -1 : 1;
-        for(int i = startRow; i != endRow ; i += down) {
-            if(getPiece(endRow, startCol) != null) {
+        if(Math.abs(endRow - startRow) != Math.abs(endCol - startCol)) {
+            return false;
+        }
+        while (currentRow < endRow && currentCol < endCol) {
+            currentRow += down;
+            currentCol += left;
+            if(endRow == currentRow) {
+                return true;
+            }
+            if(getPiece(currentRow, currentCol) != null) {
                 return false;
             }
-        }
+        } return true;
     }
 
     public String toString() {
