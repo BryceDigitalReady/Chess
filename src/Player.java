@@ -8,7 +8,7 @@ public class Player {
         this.color = color;
     }
     // 11 42
-    public void getInput() {
+    public Move getInput() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input your move.");
         String input = scanner.nextLine();
@@ -16,7 +16,11 @@ public class Player {
             System.out.println("Invalid move, make another.");
             input = scanner.nextLine();
         }
-
+        int startX = input.charAt(0);
+        int startY = input.charAt(1);
+        int endX = input.charAt(3);
+        int endY = input.charAt(4);
+        return new Move(startX, startY, endX, endY);
     }
     public boolean ifInputValid(String input) {
         Matcher matcher = pattern.matcher(input);
