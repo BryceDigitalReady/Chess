@@ -8,6 +8,9 @@ This is a java based chess game designed to be played in the terminal by Bryce T
 In order to start the game, you must go to the Main Class file and run the command in which the game will appear in the terminal. Sharing a screen, the players will input their moves through the terminal from the use of the scanner function used by the gamestate class. There should be no other needed files or programs to be downloaded for this project to run. 
 
 # Credits
+
 Digital Ready Team
+
 Bryce Tee
+
 Jimmy
