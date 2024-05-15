@@ -2,6 +2,9 @@
 By Bryce Tee
 
 # About
+
+**NOTICE** - THE FINAL PROJECT IS LOCATED IN THE Chess FINAL.zip FILE.
+
 This is a java based chess game designed to be played in the terminal by Bryce Tee. Chess is a classic board game played by two players on an 8x8 grid known as a chessboard. Players take turns moving their pieces across the board, following specific movement rules for each type of piece.  There are 6 different types of pieces that function differently from each other in order to recreate a match between the White colored player and the Black colored player. 
 
 # Controls
